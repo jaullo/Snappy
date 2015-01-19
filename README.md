@@ -18,5 +18,10 @@ Bugs fixed
 Currently im focused on make android application works, so please be patient with IOS Application and Client (web) application
 because i'm doing this in my free time.
 
+If u want to support me to continue working on this project, make me a donation (paypal)
+
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S8UHA2H42VD9E
+
+
 Please feel free to help
 
