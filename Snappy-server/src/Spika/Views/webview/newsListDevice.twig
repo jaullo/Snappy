@@ -1,0 +1,26 @@
+{% extends "webview/webViewBaseForDevice.twig" %}
+
+{% block content %}
+
+        {% include "webview/nav_bar.twig" %}
+    
+        {% for story in news %}
+            <div class="panel panel-default">
+           		{% autoescape false %}
+	                <div class="panel-heading" style="overflow: hidden;">{{ story.title }}<span style="float: right; font-weight: normal;">{{ story.created }}</span></div>
+	                <div class="panel-body">{{ story.content }}<br />
+	                    {% if story.story_url == '' %}
+	                        <button type="button" class="btn btn-info btn-xs" onclick="gotoStory({{ story._id }}, {{pager.page}})">{{lang.labelReadMore}}</button>
+	                    {% else %}
+	                        <button type="button" class="btn btn-info btn-xs" onclick="gotoLink('{{ story.story_url }}', {{ story._id }}, {{pager.page}})">{{lang.labelReadMore}}</button>
+	                    {% endif %}
+	                </div>
+                {% endautoescape %}
+            </div>
+        {% endfor %}
+        
+        <div style="text-align:center">
+            {% include "webview/pager.twig" %}
+        </div>
+
+{% endblock %}

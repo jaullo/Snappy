@@ -1,0 +1,11 @@
+*.swp
+.vagrant/
+idea/
+vagrant/
+logs/
+uploads/
+vendor/
+build/
+logs/
+nottrackingfiles/
+!logs/.gitkeep

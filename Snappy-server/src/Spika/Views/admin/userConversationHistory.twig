@@ -1,0 +1,137 @@
+{% extends "admin/adminBase.twig" %}
+
+{% block content %}
+
+{% autoescape false %}
+
+<script type="text/javascript">
+
+    var user = {{ user|json_encode()|raw }};
+    var lastUserId = 0;
+    
+    function openChat(to_user_id){
+        chatWindow.initialize();
+        chatWindow.loadUserConversation(to_user_id);
+    }
+    
+    function openGroupChat(groupId){
+        chatWindow.initialize();
+        chatWindow.loadGroupConversation(groupId);
+    }
+    
+    var chatWindow = null;
+    
+    $(document).ready(function() {
+        
+        $('#chatbox').height($('#list').height());
+        
+        chatWindow = new SpikaChatWindow('{{ROOT_URL}}/api',user,{
+            title:'{{lang.labelChatWindowTitle}}',
+            conversationNotSelected:'{{lang.conversationNotSelected}}',
+            btnReload:'{{lang.btnReload}}',
+            openLocation:'{{lang.openLocation}}',
+            chatTextBoxPlaceHolder:'{{lang.chatTextBoxPlaceHolder}}',
+            chatTextBoxSend:'{{lang.chatTextBoxSend}}',
+        },false);
+
+        chatWindow.attach($('#chatWindow'));
+        chatWindow.showAlert('{{lang.conversationNotSelected}}');
+        chatWindow.setUser(user);
+    });
+    
+</script>
+{% endautoescape %}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        {{lang.labelConversation}}
+                    </h1>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-lg-12">
+                     {% include "admin/alerts.twig" %}
+                </div>
+            </div>
+                    
+           <div class="row" >
+                <div id="list" class="col-lg-12" style="min-height:500px">
+                    
+                    <div style="text-align:right">
+                        {% include "admin/pager.twig" %}
+                    </div>
+                    
+                    <table class="table table-striped">
+                        
+                        <thead>
+                            <tr>
+                                <th width="5%">{{lang.labelMessageTarget}}</th>
+                                <th width="20%"></th>
+                                <th width="45%">{{lang.labelTargetName}}</th>
+                                <th width="20%">{{lang.labelCreated}}</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            {% for conversation in conversations %}
+
+                                <tr>
+                                    <td>
+                                        {% if conversation.to_user_id != 0 %}
+                                            <span type="button" class="btn btn-outline btn-primary btn-xs">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                        {% elseif conversation.to_group_id != 0 %}
+                                            <span type="button" class="btn btn-outline btn-primary btn-xs">
+                                                <i class="fa fa-users"></i>
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if conversation.to_user_id != 0 %}
+                                            {{lang.labelPrivateChat}}
+                                        {% elseif conversation.to_group_id != 0 %}
+                                            {{lang.labelGroupChat}}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if conversation.to_user_id != 0 %}
+                                            {{conversation.to_user_name}}
+                                        {% elseif conversation.to_group_id != 0 %}
+                                            {{conversation.to_group_name}}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{conversation.created}}</td>
+                                    <td>
+                                        {% if conversation.to_user_id != 0 %}
+                                            <a href="javascript:openChat({{conversation.to_user_id}})" class="btn btn-primary">
+                                                <i class="fa fa-comments"></i> {{lang.labelOpenWall}}
+                                            </a>
+                                        {% elseif conversation.to_group_id != 0 %}
+                                            <a href="javascript:openGroupChat({{conversation.to_group_id}})" class="btn btn-primary">
+                                                <i class="fa fa-comments"></i> {{lang.labelOpenWall}}
+                                            </a>
+                                        {% endif %}
+
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                        
+                    </table>
+
+                    <div style="text-align:right">
+                        {% include "admin/pager.twig" %}
+                    </div>
+
+                </div>
+
+                
+            </div>
+                         
+{% endblock %}

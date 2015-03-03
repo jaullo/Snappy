@@ -1,0 +1,138 @@
+{% extends "admin/adminBase.twig" %}
+
+{% block content %}
+
+<script type="text/javascript">
+
+    var loginedUser = {{ loginedUser|json_encode()|raw }};
+    var lastUserId = 0;
+    
+    function openChat(groupId){
+        location.href = '{{ROOT_URL}}/client/group/' + groupId;
+    }
+
+</script>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{lang.labelGroup}} <a href="add" class="btn btn-primary btn-lg">{{lang.btnNewGroup}}</a></h1>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-lg-12">
+                     {% include "admin/alerts.twig" %}
+                </div>
+            </div>
+                    
+           <div class="row">
+                <div id="list" class="col-lg-12" style="min-height:500px">
+                    
+                    <div style="text-align:right">
+
+                        <form class="form-inline" role="form" method="post" action="{{ROOT_URL}}/admin/group/list" >
+                          <div class="form-group">
+                            <input type="text" name="search-groupname" value="{{searchCriteria.groupName}}" class="form-control" id="exampleInputEmail2" placeholder="{{lang.formGroupName}}">
+                          </div>
+                          <button type="submit" class="btn btn-primary">{{lang.search}}</button>
+                          
+                          {% if searchCriteria.groupName != '' %}
+                                <input type="submit" class="btn btn-danger" name="clear" value="{{lang.clearCriteria}}" />
+                          {% endif %}
+                          
+                        </form>
+                    
+                    </div>
+
+                    
+                    <table class="table table-striped">
+                        
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{lang.formGroupAvatar}}</th>
+                                <th>{{lang.formGroupCategory}}</th>
+                                <th>{{lang.formGroupName}}</th>
+                                <th>{{lang.labelCreated}}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            {% for group in groups %}
+
+                                <tr>
+                                    <td>{{group._id}}</td>
+                                    <td>
+                                        {% if group.avatar_thumb_file_id != '' %}
+                                            <img class="img-thumbnail" src="{{ROOT_URL}}/api/filedownloader?file={{group.avatar_thumb_file_id}}" width="60"/>
+                                        {% else %}
+                                            <img class="img-thumbnail" src="http://dummyimage.com/60x60/e2e2e2/7a7a7a&text=nopicture" width="60"/>
+                                            
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if categoryList[group.category_id] is defined %}
+                                            {{categoryList[group.category_id].title}}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{group.name}}</td>
+                                    <td>{{group.created}}</td>
+                                    <td>
+                                        
+                                        <div class="btn-group text-left" >
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                {{lang.labelAction}} <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="{{ROOT_URL}}/admin/group/view/{{group._id}}">
+                                                        <i class="fa fa-search"></i> {{lang.labelView}}
+                                                    </a>
+                                                </li>
+                                                
+                                                {% if isAdmin or group.user_id == loginedUser._id%}
+                                                    <li>
+                                                        <a href="{{ROOT_URL}}/admin/group/edit/{{group._id}}">
+                                                            <i class="fa fa-pencil-square-o"></i> {{lang.labelEdit}}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ROOT_URL}}/admin/group/delete/{{group._id}}">
+                                                            <i class="fa fa-eraser"></i> {{lang.labelDelete}}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ROOT_URL}}/admin/group/users/{{group._id}}">
+                                                            <i class="fa fa-users"></i> {{lang.labelViewGroupUsers}}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                                
+                                                <li>
+                                                    <a href="javascript:openChat({{group._id}});">
+                                                        <i class="fa fa-comments-o"></i> {{lang.labelConversation}}
+                                                    </a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <div style="text-align:right">
+                        {% include "admin/pager.twig" %}
+                    </div>
+
+                </div>
+                
+                
+            </div>
+                         
+{% endblock %}
