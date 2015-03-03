@@ -200,8 +200,8 @@
     <string name="email_notexists">Email bestaat niet</string>
     <string name="groupname_taken">Groepsnaam dient uniek te zijn</string>
     <string name="email_sent">Wachtwoord is naar uw email adres gestuurd</string>
-    <string name="exceed_video_duration">Video minder dan 30 seconden te zijn</string>
-    <string name="exceed_voice_duration">Audio dient minder dan 3 minuten te zijn should be less than 3 minutes</string>
+    <string name="exceed_video_duration">Video dient minder dan 30 seconden te zijn</string>
+    <string name="exceed_voice_duration">Audio dient minder dan 3 minuten te zijn</string>
     <string name="my_groups">Mijn Groepen</string>
     <string name="add_group">Voeg groep toe</string>
     <string name="FAVORITES">FAVORIETEN</string>
@@ -221,7 +221,7 @@
     <string name="logout_message">Wilt u uitloggen?</string>
 
 
-    <string name="tutorial_login">Welkom bij Alert Drimmelen. Schrijf u in op een groep om meldingen te ontvangen.</string>
+    <string name="tutorial_login">Welkom bij Snappy. Schrijf u in op een groep om meldingen te ontvangen.</string>
     <string name="tutorial_recent">Bedankt voor het aanmelden! Dit scherm toont u alle ongelezen meldingen.</string>
     <string name="tutorial_wall">Hier kunt u berichten sturen aan uw contacten of naar een groep. U kunt ook een foto, video of audio bestand sturen.</string>
     <string name="tutorial_users">Vindt uw contacten hier! U kunt zoeken op naam en filteren op geslacht of leeftijd. U kunt een contact toevoegen aan uw contactenlijst zodat u deze snel kunt bereiken.</string>
