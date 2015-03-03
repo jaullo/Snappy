@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MembersActivity" >
+
+    <com.snappy.extendables.LoadMoreListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header" >
+    </com.snappy.extendables.LoadMoreListView>
+
+    <ImageView
+        android:id="@+id/ivShadow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:background="@drawable/top_shadow"
+        android:contentDescription="@null" />
+
+    <RelativeLayout
+        android:id="@+id/rlNoInternetNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:visibility="gone" >
+
+        <include layout="@layout/no_internet_notification" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlPushNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:visibility="gone" >
+
+        <include layout="@layout/push_notification" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+
+        <include layout="@layout/header_members" />
+    </RelativeLayout>
+
+</RelativeLayout>

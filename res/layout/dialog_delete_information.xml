@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:gravity="center"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/imageForDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        android:src="@drawable/dialog_bubble"
+        android:scaleType="centerInside" 
+        android:adjustViewBounds="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_alignBottom="@id/imageForDelete"
+        android:layout_alignTop="@id/imageForDelete"
+        android:layout_alignLeft="@id/imageForDelete"
+        android:layout_alignRight="@id/imageForDelete"
+        android:orientation="vertical"
+        >
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+        	android:text="@string/delete_information_title"
+        	android:textColor="@color/button_neutral_off"
+        	android:textSize="16sp"
+        	/>
+        
+        <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/delete_information_text"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/button_neutral_on"
+            android:textSize="26sp"
+            android:text="bla"
+            />
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/close_delete_information_dialog"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+        	android:layout_gravity="center"
+        	android:gravity="center"
+        	android:text="@string/delete_close"
+        	android:textColor="@android:color/white"
+        	android:background="@drawable/rounded_rect_positive_selector"
+            />
+        
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,400 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sidemenu_background"
+    tools:context=".MainActivity" >
+
+    <RelativeLayout
+        android:id="@+id/rlServerField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlSignInTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="36dp"
+        android:padding="20dp"
+        android:background="@color/sign_in_gray" >
+
+        <ImageView
+            android:id="@+id/ivServerIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_server" />
+
+        <com.snappy.view.SimpleAutoFitTextView
+            android:id="@+id/tvServerSelect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ivServerIcon"
+            android:layout_toLeftOf="@+id/ivArrowIcon"
+            android:background="@null"
+            android:singleLine="true"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivArrowIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_server_select" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSignInForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlServerField"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp" >
+
+        <LinearLayout
+            android:id="@+id/llSignInBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/sign_in_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:weightSum="2" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ivEmailIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/etSignInEmail"
+                    android:layout_marginBottom="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/email_icon" />
+
+                <EditText
+                    android:id="@+id/etSignInEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/ivEmailIcon"
+                    android:background="@null"
+                    android:gravity="bottom"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/sign_in_divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ivPasswordIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/etSignInPassword"
+                    android:layout_marginBottom="3dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/password_icon" />
+
+                <EditText
+                    android:id="@+id/etSignInPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/ivPasswordIcon"
+                    android:background="@null"
+                    android:gravity="bottom"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSignUpBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/sign_in_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:weightSum="3" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ivUserNameIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/etSignUpName"
+                    android:contentDescription="@null"
+                    android:src="@drawable/username_icon" />
+
+                <EditText
+                    android:id="@+id/etSignUpName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/ivUserNameIcon"
+                    android:background="@null"
+                    android:gravity="bottom"
+                    android:hint="@string/username"
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/sign_in_divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ivEmailIcon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/etSignUpEmail"
+                    android:layout_marginBottom="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/email_icon" />
+
+                <EditText
+                    android:id="@+id/etSignUpEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/ivEmailIcon2"
+                    android:background="@null"
+                    android:gravity="bottom"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/sign_in_divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ivPasswordIcon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/etSignUpPassword"
+                    android:layout_marginBottom="3dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/password_icon" />
+
+                <EditText
+                    android:id="@+id/etSignUpPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/ivPasswordIcon2"
+                    android:background="@null"
+                    android:gravity="bottom"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llForgotPasswordBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/sign_in_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:weightSum="2" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_margin="20dp"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ivEmailIcon3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/etForgotPasswordEmail"
+                    android:layout_marginBottom="2dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/email_icon" />
+
+                <EditText
+                    android:id="@+id/etForgotPasswordEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/ivEmailIcon3"
+                    android:background="@null"
+                    android:gravity="bottom"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/rlSignInForm"
+        android:layout_below="@+id/rlSignInForm"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:text="@string/forgot_password"
+        android:textColor="@color/sign_in_light_gray" />
+
+    <Button
+        android:id="@+id/btnSendPassword"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/rlSignInTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="355dp"
+        android:background="@drawable/rounded_rect_positive_selector"
+        android:gravity="center"
+        android:text="@string/SEND_PASSWORD"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnActive"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/rlSignInTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="355dp"
+        android:background="@drawable/rounded_rect_positive_selector"
+        android:gravity="center"
+        android:text="@string/SIGN_IN"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnInactive"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/btnActive"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rounded_rect_neutral_selector"
+        android:gravity="center"
+        android:text="@string/SIGN_UP"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/rlNoInternetNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlSignInTitle"
+        android:visibility="gone" >
+
+        <include layout="@layout/no_internet_notification" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlPushNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlSignInTitle"
+        android:visibility="gone" >
+
+        <include layout="@layout/push_notification" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSignInTitle"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/sidemenu_header" >
+
+        <com.snappy.view.MyriadProTextView
+            android:id="@+id/tvSignInTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/SIGN_IN"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="85dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/positive_selector"
+            android:gravity="center"
+            android:text="@string/BACK"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</RelativeLayout>

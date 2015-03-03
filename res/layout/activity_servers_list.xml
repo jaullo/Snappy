@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sidemenu_background" >
+    
+    <RelativeLayout
+        android:id="@+id/rlAddServer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:background="@color/sign_in_gray" >
+
+        <ImageView
+            android:id="@+id/ivServerIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_server" />
+
+        <EditText
+            android:id="@+id/etAddServer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ivServerIcon"
+            android:background="@null"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:hint="@string/add_server"
+            android:paddingRight="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:imeOptions="actionDone" />
+
+    </RelativeLayout>
+    
+    <ListView android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlAddServer"
+        android:listSelector="#00000000"
+        android:divider="@drawable/sign_in_divider"
+        android:background="@color/sign_in_gray"
+        android:layout_margin="20dp"
+        android:dividerHeight="1dp"></ListView>
+
+    <RelativeLayout
+        android:id="@+id/rlNoInternetNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:visibility="gone" >
+        
+        <include layout="@layout/no_internet_notification" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+
+        <include layout="@layout/header_list_servers" />
+    </RelativeLayout>
+
+</RelativeLayout>
