@@ -1,1 +1,253 @@
-tekst
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Snappy</string>
+    <string name="hello_world">Hallo Wereld!</string>
+    <string name="menu_settings">Instellingen</string>
+    <string name="SIGN_IN">Inloggen</string>
+    <string name="SIGN_UP">Registreren</string>
+    <string name="forgot_password"><u>wachtwoord vergeten?</u></string>
+    <string name="WALL">OVERZICHT</string>
+    <string name="CAMERA">CAMERA</string>
+    <string name="GALLERY">GALLERIJ</string>
+    <string name="SAVE">OPSLAAN</string>
+    <string name="OK">OK</string>
+    <string name="CANCEL">ANNULEER</string>
+    <string name="REMOVE_PHOTO">WIS FOTO</string>
+    <string name="CREATE">MAAK</string>
+    <string name="ACCOUNT">ACCOUNT</string>
+    <string name="NOTIFICATIONS">BERICHTEN</string>
+    <string name="BACK">TERUG</string>
+    <string name="users">Gebruikers</string>
+    <string name="groups">Groepen</string>
+    <string name="profile">Profiel</string>
+    <string name="information">Informatie</string>
+    <string name="settings">Instellingen</string>
+    <string name="logout">Uitloggen</string>
+    <string name="search">Zoeken</string>
+    <string name="SEARCH">SEARCH</string>
+    <string name="private_wall">Eigen Overzicht</string>
+    <string name="NEW_GROUP">NIEUWE GROEP</string>
+    <string name="SEND">VERZEND</string>
+    <string name="USE_PHOTO">GEBRUIK FOTO</string>
+    <string name="name">naam</string>
+    <string name="age">leeftijd</string>
+    <string name="password">wachtwoord</string>
+    <string name="current_password">Geef huidig wachtwoord op</string>
+    <string name="new_password">Geef nieuw wachtwoord op</string>
+    <string name="new_password_again">Herhaal nieuw wachtwoord</string>
+    <string name="description">Beschrijving</string>
+    <string name="username">gebruikersnaam</string>
+    <string name="group_name">groepsnaam</string>
+    <string name="USERNAME">GEBRUIKERSNAAM:</string>
+    <string name="GROUP_NAME">GROEPSNAAM:</string>
+    <string name="NAME">NAAM:</string>
+    <string name="PASSWORD">WACHTWOORD:</string>
+    <string name="email">email</string>
+    <string name="GROUP">GROEP</string>
+    <string name="GROUPS">GROEPEN</string>
+    <string name="USERS">GEBRUIKERS</string>
+    <string name="MY_PROFILE">MIJN PROFIEL</string>
+    <string name="PROFILE">PROFIEL</string>
+    <string name="CROP_IMAGE">BIJSNIJDEN</string>
+    <string name="PHOTO">FOTO</string>
+    <string name="LOCATION">LOCATIE</string>
+    <string name="CHANGE_PASSWORD">WIJZIG WACHTWOORD</string>
+    <string name="ADD_PASSWORD">VOEG WACHTWOORD TOE</string>
+    <string name="DELETE">VERWIJDER</string>
+    <string name="ADD_CONTACT">TOEVOEGEN AAN CONTACTEN</string>
+    <string name="REMOVE_CONTACT">VERWIJDER UIT CONTACTEN</string>
+    <string name="LAST_LOGIN">LAATSTE LOGIN:</string>
+    <string name="ABOUT">OVER:</string>
+    <string name="BIRTHDAY">GEBOORTEDATUM:</string>
+    <string name="GENDER">GESLACHT:</string>
+    <string name="GROUP_OWNER">GROEPSEIGENAAR:</string>
+    <string name="DESCRIPTION">OMSCHRIJVING:</string>
+    <string name="no_valid_email_password">Verkeerd email en/of wachtwoord</string>
+    <string name="user_already_exists">Dit emailadres is al in gebruik</string>
+    <string name="no_user_registered">Geen gebruiker met dit email-adres. Registreer u eerst</string>
+    <string name="no_email_password">Geen email en/of wachtwoord opgegeven</string>
+    <string name="contact_added">Contact toegevoegd</string>
+    <string name="contact_removed">Contact verwijderd</string>
+    <string name="failed_to_update_contacts">Fout bij updaten contact</string>
+    <string name="group_updated">Groep geupdate</string>
+    <string name="failed_to_update_group">Fout bij updaten groep</string>
+    <string name="group_deleted">Groep verwijderd</string>
+    <string name="failed_to_delete_group">Fout bij verwijderen groep</string>
+    <string name="ADD_TO_FAVORITES">INSCHRIJVEN</string>
+    <string name="REMOVE_FROM_FAVORITES">UITSCHRIJVEN</string>
+    <string name="group_added">Groep toegevoegd</string>
+    <string name="group_removes">Groep verwijderd</string>
+    <string name="posted_less_than_a_minute_ago">Minder dan een minuut geleden geplaatst door</string>
+    <string name="posted">Geplaatst</string>
+    <string name="posted_by">Geplaatst door</string>
+    <string name="day_ago">dag geleden door</string>
+    <string name="days_ago">dagen geleden door</string>
+    <string name="hour_ago">uur geleden door</string>
+    <string name="hours_ago">uur geleden door</string>
+    <string name="minute_ago">minuut geleden door</string>
+    <string name="minutes_ago">minuten geleden door</string>
+    <string name="SEARCH_TERM">ZOEKTERM</string>
+    <string name="create">MAKEN</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallerij</string>
+    <string name="video">Video</string>
+    <string name="emoji">Smilie</string>
+    <string name="location">Locatie</string>
+    <string name="record">Audio</string>
+    <string name="MAIN_MENU">MENU</string>
+    <string name="about">over</string>
+    <string name="male">man</string>
+    <string name="female">vrouw</string>
+    <string name="other">anders</string>
+    <string name="gender">geslacht</string>
+    <string name="birthday">geboortedatum</string>
+    <string name="when_is_your_birthday">Wanneer bent u geboren?</string>
+    <string name="hookup_date_format">MMM dd, yyyy</string>
+    <string name="hookup_date_time_format">MMM dd, HH:mm</string>
+    <string name="loading">LADEN...</string>
+    <string name="RECENT_ACTIVITY">RECENTE ACTIVITEIT</string>
+    <string name="CHAT_ACTIVITY">GESPREKS ACTIVITEIT</string>
+    <string name="GROUPS_ACTIVITY">GROEPS ACTIVITEIT</string>
+    <string name="USERS_ACTIVITY">GEBRUIKERS ACTIVITEIT</string>
+    <string name="INFORMATION">INFORMATIE</string>
+    <string name="SETTINGS">INSTELLINGEN</string>
+    <string name="delete_group_message">Weet u zeker dat u deze groep wilt verwijderen?</string>
+    <string name="no_internet_connection">Geen verbinding met internet</string>
+    <string name="NO_INTERNET_CONNECTION">GEEN VERBINDING MET INTERNET</string>
+    <string name="can_not_connect_to_server">Kan geen verbinding maken met server</string>
+    <string name="an_internal_error_has_occurred">Er is een fout opgetreden. (%1$s)</string>
+    <string name="token_expired_error">Token verlopen!</string>
+    <string name="exit_app_message">Weet u zeker dat u deze app af wilt sluiten?</string>
+    <string name="please_enter_server_url">GEEF SERVER ADRES OP</string>
+    <string name="please_enter_passcode">GEEF UW HUIDIG WACHTWOORD</string>
+    <string name="please_enter_new_passcode">GEEF EEN NIEUW WACHTWOORD</string>
+    <string name="please_enter_new_passcode_again">HERHAAL HET NIEUWE WACHTWOORD</string>
+    <string name="server_url_hint">http:// ...</string>
+    <string name="CLEAR_CACHE">WIS CACHE</string>
+    <string name="passcode_protect">WACHTWOORD BEVEILIGD</string>
+    <string name="clear_cache_message">Weet u zeker dat u het cache geheugen wilt wissen?</string>
+    <string name="FAIL">MISLUKT</string>
+    <string name="SUCCESS">GELUKT</string>
+    <string name="EDIT">WIJZIG</string>
+    <string name="SHOW">BEKIJK</string>
+
+    <string-array name="gender">
+        <item>Man</item>
+        <item>Vrouw</item>
+        <item>Niet opgegeven</item>
+    </string-array>
+    <string-array name="online_status">
+        <item>Online</item>
+        <item>Afwezig</item>
+        <item>Bezig</item>
+        <item>Offline</item>
+    </string-array>
+
+    <string name="online">online</string>
+    <string name="away">afwezig</string>
+    <string name="busy">bezig</string>
+    <string name="offline">offline</string>
+    <string name="tap_to_add_birthday">Tab om uw geboortedatum toe te voegen</string>
+    <string name="tap_to_add_gender">Tab om uw geslacht toe te voegen</string>
+    <string name="tap_to_add_description">Tab om een beschrijving toe te voegen</string>
+    <string name="tap_to_add_online_status">Tab om status toe te voegen</string>
+    <string name="tap_to_add_group_name">Tab om groepsnaam op te geven</string>
+    <string name="tap_to_add_password">Tab om wachtwoord toe te voegen</string>
+    <string name="from">van</string>
+    <string name="to">naar</string>
+    <string name="no_users">Geen gebruikers!</string>
+    <string name="SEND_PASSWORD">STUUR WACHTWOORD</string>
+    <string name="FORGOT_PASSWORD">STUUR WACHTWOORD</string>
+    <string name="send_password">Stuur wachtwoord naar: </string>
+    <string name="confirm_email">Controleer uw email en open de link.</string>
+    <string name="USER">GEBRUIKER</string>
+    <string name="my_contacts">Mijn Contacten</string>
+    <string name="favorite_groups">Favoriete Groepen</string>
+    <string name="create_group">Maak groep</string>
+    <string name="search_name_hint">Typ naam...</string>
+    <string name="EXPLORE">ONTDEK</string>
+    <string name="explore">Ontdek</string>
+    <string name="pick_age_hint">Schuif voor leeftijd</string>
+    <string name="all">alle</string>
+    <string name="no_users_found">Geen gebruikers gevonden</string>
+    <string name="no_groups_found">Geen groepen gevonden</string>
+    <string name="no_users_in_contacts">Geen gebruikers in uw contacten</string>
+    <string name="no_groups_in_favorites">Geen groepen in uw favorieten</string>
+    <string name="no_wall_messages">Nog geen berichten</string>
+    <string name="MY_CONTACTS">MIJN CONTACTEN</string>
+    <string name="FAVORITE_GROUPS">FAVORIETE GROEPEN</string>
+    <string name="ONLINE_STATUS">ONLINE STATUS:</string>
+    <string name="SHOW_PASSWORD">LAAT WACHTWOORD ZIEN:</string>
+    <string name="EMAIL">EMAIL:</string>
+    <string name="categories">Categorieen</string>
+    <string name="CATEGORIES">CATEGORIEEN</string>
+    <string name="CATEGORY">CATEGORIE:</string>
+    <string name="password_error_number_of_characters">Wachtwoord moet minimaal uit 6 tekens bestaan</string>
+    <string name="password_error_invalid_characters">Wachtwoord mag enkel cijfers en letters bevatten</string>
+    <string name="password_ok">Wachtwoord OK</string>
+    <string name="email_not_valid">Email is niet geldig</string>
+    <string name="email_length">Email is verplicht</string>
+    <string name="max_contacts_alert">U heeft uw maximun aantal contacten bereikt</string>
+    <string name="max_favorites_alert">U heeft uw maximum aantal groepen bereikt</string>
+    <string name ="email_ok">Email OK</string>
+    <string name="name_error">Uw naam moet uit meer dan 1 teken bestaan</string>
+    <string name="name_ok">Naam OK</string>
+    <string name="no_camera">Geen camera op uw toestel</string>
+    <string name="username_and_email_taken">Uw gebruikersnaam en email dienen uniek te zijn</string>
+    <string name="username_taken">Gebruikersnaam dient uniek te zijn</string>
+    <string name="email_taken">Email dient uniek te zijn</string>
+    <string name="email_notexists">Email bestaat niet</string>
+    <string name="groupname_taken">Groepsnaam dient uniek te zijn</string>
+    <string name="email_sent">Wachtwoord is naar uw email adres gestuurd</string>
+    <string name="exceed_video_duration">Video minder dan 30 seconden te zijn</string>
+    <string name="exceed_voice_duration">Audio dient minder dan 3 minuten te zijn should be less than 3 minutes</string>
+    <string name="my_groups">Mijn Groepen</string>
+    <string name="add_group">Voeg groep toe</string>
+    <string name="FAVORITES">FAVORIETEN</string>
+    <string name="this_group_is_deleted_please_unsubscribe">Deze groep is verwijderd door de eigenaar. Schrijf u uit als u ingeschreven bent.</string>
+    <string name="this_group_is_deleted">Deze groep is verwijderd door de eigenaar.</string>
+    <string name="CLOSE">SLUITEN</string>
+    <string name="invalid_token_message">Token is verlopen.\nAUB opnieuw inloggen.</string>
+    <string name="OPEN_CONVERSATION">OPEN CONVERSATIE</string>
+    <string name="enter_group_password">Geef groepswachtwoord op</string>
+    <string name="MEMBER">LEDEN</string>
+    
+    <string name="tutorial_nocontact">U heeft nog geen contacten! Voeg contacten toe zodat u ze gemakkelijk kunt bereiken.</string>
+    <string name="tutorial_nofavorite">u heeft zich nog niet ingeschreven in een groep. Schrijf u in voor een groep en ontvang meldingen bij nieuwe berichten.</string>
+    
+    <string name="OPEN_WEB">Open Browser</string>
+    <string name="USER_SUPPORT">Ondersteuning</string>
+    <string name="logout_message">Wilt u uitloggen?</string>
+
+
+    <string name="tutorial_login">Welkom bij Alert Drimmelen. Schrijf u in op een groep om meldingen te ontvangen.</string>
+    <string name="tutorial_recent">Bedankt voor het aanmelden! Dit scherm toont u alle ongelezen meldingen.</string>
+    <string name="tutorial_wall">Hier kunt u berichten sturen aan uw contacten of naar een groep. U kunt ook een foto, video of audio bestand sturen.</string>
+    <string name="tutorial_users">Vindt uw contacten hier! U kunt zoeken op naam en filteren op geslacht of leeftijd. U kunt een contact toevoegen aan uw contactenlijst zodat u deze snel kunt bereiken.</string>
+    <string name="tutorial_groups">Hier vindt u alle groepn. Schrijf u in op een groep om meldingen van deze groep te ontvangen.</string>
+    <string name="tutorial_group_add">U kunt een groep ook met een wachtwoord beveiligen zodat alleen diegene met het wachtwoord toegang hebben.</string>
+    <string name="tutorial_userprofile">U kunt contacten toevoegen aan ue contactenlijst, maar let op, het aantal in uw contactenlijst is beperkt tot 20.</string>
+    <string name="tutorial_groupprofile">U kunt u inschrijven in een groep om meldingen van de groep te ontvangen, maar let op, het maximum aantal groepen is 10.</string>
+
+
+    <string name="no_recent_activities">Geen recente activiteiten</string>
+    <string name="wrongpassword">Verkeerd Wachtwoord</string>
+    
+    <string name="YES">JA</string>
+    <string name="NO">NEE</string>
+
+    <string name="delete_the_message">Verwijder het bericht</string>
+    <string name="delete_information_title">Dit bericht is verwijderd</string>
+    <string name="dont_delete">Niet verwijderen</string>
+    <string name="delete_now">Nu verwijderen</string>
+    <string name="delete_in_5_min">Na 5 min</string>
+    <string name="delete_after_1_day">Na 1 dag</string>
+    <string name="delete_after_a_week">Na 1 week</string>
+    <string name="delete_after_user_sees_it">Als de gebruiker deze gezien heeft</string>
+    <string name="delete_close">OK</string>
+    
+    <string name="select_server">SELECTEER SERVER</string>
+    <string name="add_server">Handmatige URL</string>
+    
+</resources>
