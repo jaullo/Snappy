@@ -16,7 +16,7 @@ Changes for this commint
  * Spanish language was added
  * Video and audio max recording time was increased to 10 minutes
  * Max contacts and favorites limit was increased, 200 and 60 respectively
- * New variables was adden in constants to give more personalization to the app on Message received
+ * New variables was added in constants to give more personalization to the app on Message received
  * The triggerNotification method from GCMINTENTSERVICE was replaced with generateNotification method. Now we have personalized status bar messages, user info and message body when showing a message in status bar. Also we have new device wakeup functions.
  * Android kikat error when selecting image or video from gallery was fixed. New FileUtils class was added. New validation for kitkat is made on CameraCropActivity
  * Error that crashes the app when u try to play a sound or video was fixed. The method that causes this fatal error was removed while we work on it to solve the problem. 
