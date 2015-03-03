@@ -1,16 +1,16 @@
- # Snappy
+Snappy
 Snappy Instant Messenger
-+
-+I started this new project based on spika messenger (https://github.com/cloverstudio/Spika) because they are not supporting the opensource community.
-+
-+If u want to join this project and give some help, please contact me
-+
-+
-+Current Mayor Bugs (I'm working....)
-+ * Push notifications are not working
-+ * Google maps not loading (error getting location)
-+
-+Bugs fixed
+
+I started this new project based on spika messenger because they are not supporting the opensource community.
+
+If u want to join this project and give some help, please contact me
+
+
+Current Mayor Bugs (I'm working....)
+ * Push notifications are not working
+ * Google maps not loading (error getting location)
+
+Bugs fixed
 + * Repeated controls ID's in some activities
 + * Emoticons not loading, apache throws some errors
 + * Added new instructions for backend setup
