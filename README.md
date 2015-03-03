@@ -26,12 +26,15 @@ To get this application code to work, u have to make some changes in server file
 
 1. Go to Spika\Controller\AsyncTaskController.php
 2. Search for $controllers->post('/notifyNewDirectMessage' method and add this new variables
+3
           //get the message body tag
             $msgBody = $message['body'];
             
             //set the flag
             $msgFlag = "1";
+
 3. Replace the fields array with this
+
  $fields = array(
                                 'registration_ids' => $registrationIDs,
                                 'data' => array( 
@@ -44,13 +47,21 @@ To get this application code to work, u have to make some changes in server file
                                         "groupId" => ""
                                         ),
                                );
+                               
+                               
 4. Search for $controllers->post('/notifyNewGroupMessage' method dd this new variables
+
+
           //get the message body tag
             $msgBody = $message['body'];
             
             //set the flag
             $msgFlag = "2";
+            
+            
 5. Replace the fields array method with this
+
+
  $fields = array(
                             'registration_ids' => $androidTokens,
                             'data' => array( 
@@ -63,6 +74,7 @@ To get this application code to work, u have to make some changes in server file
                                     "groupId" => $message['to_group_id']
                                     ),
                            );
+                           
 
 6. Restart apache
 
