@@ -1,0 +1,48 @@
+Vagrant.configure('2') do |config|
+  config.vm.hostname              = 'test002.foobar.com'  # 好きなhostnameに変更
+
+  config.vm.provider :digital_ocean do |provider, override|
+  
+    provider.client_id            = ''
+    provider.api_key              = ''
+    provider.ssh_key_name         = ''
+
+    override.ssh.private_key_path = '~/.ssh/id_rsa'
+    override.vm.box               = 'digital_ocean'
+    override.vm.box_url           = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
+
+    provider.image                = 'Ubuntu 12.04.3 x64'
+    provider.region               = 'San Francisco 1'
+    provider.size                 = '512MB'
+    provider.ca_path              = '/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt'
+  end
+
+  config.vm.provision :shell, :inline => <<-EOT
+    sudo apt-get update
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y php5 php5-curl phpunit curl git-core php5-xdebug postfix mysql-server php5-mysql php5-gd
+
+    #http://www.giocc.com/installing-phpunit-on-ubuntu-11-04-natty-narwhal.html
+    sudo pear upgrade pear
+	sudo pear channel-discover pear.phpunit.de
+	sudo pear channel-discover components.ez.no
+	sudo pear channel-discover pear.symfony.com
+	sudo pear install --alldeps phpunit/PHPUnit
+
+    a2enmod rewrite
+    sed -i '/AllowOverride None/c AllowOverride All' /etc/apache2/sites-available/default    
+
+    sudo rm -rf /var/www
+    sudo ln -s /vagrant /var/www
+
+    sudo /etc/init.d/apache2 restart
+    sudo mkdir -p /vagrant/logs
+    sudo mkdir -p /vagrant/uploads
+    sudo chmod -R 777 /vagrant/logs
+    sudo chmod -R 777 /vagrant/uploads
+    sudo php /vagrant/composer.phar install -d /vagrant/
+
+    echo 'please open http://[your_ip_address]/wwwroot/installer to finish setup'
+  	
+  EOT
+
+end

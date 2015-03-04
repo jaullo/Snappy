@@ -1,0 +1,35 @@
+/* Global Styles */
+
+/* ------------------------------- */
+
+body {
+   background-color: #f8f8f8;
+}
+
+#wrapper {
+   width: 100%;
+}
+
+.panel{
+   margin: 20px;
+}
+
+.panel-heading{
+   font-weight: bold;
+   overflow: hidden;
+}
+.panel-body button{
+   float: right;
+}
+.alert{
+   margin-left: 20px;
+   margin-right: 20px;
+}
+
+.alert_wrapper{
+   width: 100%;
+}
+#comment_wrapper img{
+   width: 64px;
+   height: 64px;
+}

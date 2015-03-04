@@ -1,0 +1,135 @@
+{% extends "admin/adminBase.twig" %}
+
+{% block content %}
+
+<script type="text/javascript">
+
+    var loginedUser = {{ loginedUser|json_encode()|raw }};
+
+    function openChat(userId){
+        location.href = '{{ROOT_URL}}/client/user/' + userId;
+    }
+
+</script>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{{lang.labelUser}} 
+                    {% if isAdmin %}
+                        <a href="add" class="btn btn-primary btn-lg">{{lang.btnNewUser}}</a></h1>
+                    {% endif %}
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-lg-12">
+                     {% include "admin/alerts.twig" %}
+                </div>
+            </div>
+                    
+           <div class="row">
+                <div class="col-lg-12">
+                    
+                    <div style="text-align:right">
+
+                        <form class="form-inline" role="form" method="post" action="{{ROOT_URL}}/admin/user/list" >
+                          <div class="form-group">
+                            <input type="text" name="search-username" value="{{searchCriteria.username}}" class="form-control" id="exampleInputEmail2" placeholder="{{lang.formUserName}}">
+                          </div>
+                          <button type="submit" class="btn btn-primary">{{lang.search}}</button>
+                          {% if searchCriteria.username != '' %}
+                                <input type="submit" class="btn btn-danger" name="clear" value="{{lang.clearCriteria}}" />
+                          {% endif %}
+                          
+                        </form>
+                    
+                    </div>
+                    
+                    <table class="table table-striped">
+                        
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{lang.formUserAvatar}}</th>
+                                <th>{{lang.formUserName}}</th>
+                                <th>{{lang.formUserEmail}}</th>
+                                <th class="text-right">{{lang.labelCreated}}</th>
+                                <th width="100px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            {% for user in users %}
+
+                                <tr>
+                                    <td>{{user.value._id}}</td>
+                                    <td>
+                                        {% if user.value.avatar_thumb_file_id != '' %}
+                                            <img class="img-thumbnail" src="{{ROOT_URL}}/api/filedownloader?file={{user.value.avatar_thumb_file_id}}" width="60"/>
+                                        {% else %}
+                                            <img class="img-thumbnail" src="http://dummyimage.com/60x60/e2e2e2/7a7a7a&text=nopicture" width="60"/>
+                                            
+                                        {% endif %}
+                                    </td>
+                                    <td>{{user.value.name}}</td>
+                                    <td>{{user.value.email}}</td>
+                                    <td class="text-right">{{user.value.created}}</td>
+                                    <td class="text-right">
+                                        
+                                        <div class="btn-group text-left" >
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                {{lang.labelAction}} <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="{{ROOT_URL}}/admin/user/view/{{user.value._id}}">
+                                                        <i class="fa fa-search"></i> {{lang.labelView}}
+                                                    </a>
+                                                </li>
+                                                
+                                                {% if isAdmin %}
+                                                    <li>
+                                                        <a href="{{ROOT_URL}}/admin/user/edit/{{user.value._id}}">
+                                                            <i class="fa fa-pencil-square-o"></i> {{lang.labelEdit}}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ROOT_URL}}/admin/user/delete/{{user.value._id}}">
+                                                            <i class="fa fa-eraser"></i> {{lang.labelDelete}}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ROOT_URL}}/admin/user/conversation/{{user.value._id}}">
+                                                            <i class="fa fa-comments-o"></i> {{lang.labelConversation}}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                                
+                                                <li>
+                                                    <a href="javascript:openChat({{user.value._id}})">
+                                                        <i class="fa fa-comment-o"></i> {{lang.labelStartChat}}
+                                                    </a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                    </td>
+                                    
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <div style="text-align:right">
+                        {% include "admin/pager.twig" %}
+                    </div>
+
+                </div>
+
+
+            </div>
+                         
+{% endblock %}
