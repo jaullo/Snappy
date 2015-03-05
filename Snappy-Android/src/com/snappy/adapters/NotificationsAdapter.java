@@ -45,6 +45,7 @@ import android.widget.TextView;
 
 
 import com.snappy.R;
+import com.snappy.SpikaApp;
 import com.snappy.WallActivity;
 import com.snappy.couchdb.CouchDB;
 import com.snappy.couchdb.ResultListener;
@@ -179,14 +180,14 @@ public class NotificationsAdapter extends BaseAdapter implements
 					.get(position);
 			holder.position = position;
 
-			if (notificationMessage.getCount() > 1) {
+			if (notificationMessage.getCount() >= 1) {
 				holder.rlNotificationsNumber.setVisibility(View.VISIBLE);
 				holder.tvNotificationsNumber.setText(Integer
 						.toString(notificationMessage.getCount()));
 			} else {
 				holder.rlNotificationsNumber.setVisibility(View.INVISIBLE);
 			}
-
+			
 			int stubId = R.drawable.image_stub;
 			if (mTargetType.equals(Const.USER)) {
 				stubId = R.drawable.user_stub;
@@ -198,7 +199,26 @@ public class NotificationsAdapter extends BaseAdapter implements
 			Utils.displayImage(notificationMessage.getUserAvatarFileId(),
 					holder.ivImage, holder.pbLoading, ImageLoader.SMALL, stubId, false);
 
-			holder.tvMessage.setText(notificationMessage.getMessage());
+			String chainMessage = null;
+			String chainMessageGroup = null;
+			String chainMessageFinal = null;
+			
+			if(mTargetType.equals(Const.USER) )
+			{				
+				chainMessage = SpikaApp.getContext().getString(R.string.recent_activity_string_message) + " "+ notificationMessage.getMessage().substring(notificationMessage.getMessage().indexOf("from") + 4).trim();
+				Log.d("Cadena Usuario", chainMessage);
+				holder.tvMessage.setText(chainMessage);
+			}
+			else if(mTargetType.equals(Const.GROUP))
+			{
+				//extract the user name
+				chainMessage = notificationMessage.getMessage().substring(0, notificationMessage.getMessage().indexOf(' ')).trim();
+				//extract the group name
+				chainMessageGroup = notificationMessage.getMessage().substring(notificationMessage.getMessage().indexOf("group") + 6).trim();		
+				chainMessageFinal = chainMessage + " " + SpikaApp.getContext().getString(R.string.recent_activity_string_message_group) + " " + chainMessageGroup;
+				Log.d("cadena de grupo", chainMessageFinal);
+				holder.tvMessage.setText(chainMessageFinal);
+			}
 			v.setOnClickListener(this);
 
 		} catch (Exception e) {
