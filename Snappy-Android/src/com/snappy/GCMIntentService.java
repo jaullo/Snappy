@@ -25,6 +25,7 @@
 package com.snappy;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
@@ -51,10 +52,12 @@ import android.util.Log;
 import com.google.android.gcm.GCMBaseIntentService;
 import com.snappy.couchdb.Command;
 import com.snappy.couchdb.CouchDB;
+import com.snappy.couchdb.LocalDB;
 import com.snappy.couchdb.ResultListener;
 import com.snappy.couchdb.SpikaAsyncTask;
 import com.snappy.couchdb.SpikaException;
 import com.snappy.couchdb.SpikaForbiddenException;
+import com.snappy.couchdb.model.LocalMessage;
 import com.snappy.couchdb.model.User;
 import com.snappy.management.UsersManagement;
 import com.snappy.utils.Const;
@@ -74,6 +77,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	public final static String PUSH = "com.snappy.GCMIntentService.PUSH";
 	private static final Intent mPushBroadcast = new Intent(PUSH);
 	private static final String LOG_TAG = "GetAClue::GCMIntentService";
+	private LocalDB db = null;
 	
 	public GCMIntentService() {
 		super(Const.PUSH_SENDER_ID);
@@ -108,17 +112,14 @@ public class GCMIntentService extends GCMBaseIntentService {
 	 * */
 	@Override
 	protected void onMessage(Context context, Intent intent) {
+		db = new LocalDB(context);
 		Bundle pushExtras = intent.getExtras();
 		String pushMessage = intent.getStringExtra(Const.PUSH_MESSAGE);
 		String pushFromName = intent.getStringExtra(Const.PUSH_FROM_NAME);
 		String pushMessageBody = intent.getStringExtra(Const.PUSH_FROM_MESSAGE_BODY);
-		//String pushMessageFlag = intent.getStringExtra(Const.PUSH_FROM_MESSAGE_FLAG);
 		
-		String pushMessaBodyStyled = pushFromName.toUpperCase() + ": " + pushMessageBody;
-		//String pushMessageTitle = null;
-		
-//		if("1".equals(pushMessageFlag))
-//		{}
+		String pushMessaBodyStyled = pushFromName + ": " + pushMessageBody;
+		db.writeMessage(pushMessaBodyStyled);	
 		
 		try {
 			boolean appIsInForeground = new SpikaApp.ForegroundCheckAsync()
@@ -133,8 +134,8 @@ public class GCMIntentService extends GCMBaseIntentService {
 				LocalBroadcastManager.getInstance(this).sendBroadcast(mPushBroadcast);
 				generateNotification(this, pushMessage, pushFromName, pushExtras, pushMessaBodyStyled);
 			} else {
-				triggerNotification(this, pushMessage, pushFromName, pushExtras, pushMessaBodyStyled);
-				//generateNotification(this, pushMessage, pushFromName, pushExtras, pushMessaBodyStyled);
+				//triggerNotification(this, pushMessage, pushFromName, pushExtras, pushMessaBodyStyled);
+				generateNotification(this, pushMessage, pushFromName, pushExtras, pushMessaBodyStyled);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -207,6 +208,10 @@ public class GCMIntentService extends GCMBaseIntentService {
 	private void generateNotification(Context context, String message,
 			String fromName, Bundle pushExtras, String body) {
 
+		
+		db = new LocalDB(context);
+		List<LocalMessage> myMessages = db.getAllMessages();
+		
 		// Open a new activity called GCMMessageView
 		Intent intento = new Intent(this, SplashScreenActivity.class);
 		intento.replaceExtras(pushExtras);
@@ -222,21 +227,34 @@ public class GCMIntentService extends GCMBaseIntentService {
 				PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// Create the notification with a notification builder
-		Notification notification = new Notification.Builder(this)
+		NotificationCompat.Builder notification = new NotificationCompat.Builder(this)
 				.setSmallIcon(R.drawable.icon_notification)
 				.setWhen(System.currentTimeMillis())
-				.setContentTitle(this.getString(R.string.push_new_message_message))
-				.setContentText(body).setContentIntent(pIntent)
-				.build();
+				.setContentTitle(myMessages.size() + " " + this.getString(R.string.push_new_message_message))
+				.setStyle(new NotificationCompat.BigTextStyle().bigText("Mas mensajes"))
+				.setAutoCancel(true)
+				.setDefaults(Notification.DEFAULT_VIBRATE |
+                                Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS)
+				.setContentText(body).setContentIntent(pIntent);
 
+		NotificationCompat.InboxStyle inboxStyle =  new NotificationCompat.InboxStyle();
+		inboxStyle.setBigContentTitle(myMessages.size() + " " + this.getString(R.string.push_new_message_message));
+		
+		for (int i=0; i < myMessages.size(); i++) {
+
+		    inboxStyle.addLine(myMessages.get(i).getMessage());
+		}
+		
+		notification.setStyle(inboxStyle);
+		
 		// Remove the notification on click
-		notification.flags |= Notification.FLAG_AUTO_CANCEL;
+		//notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		//notification.defaults |= Notification.DEFAULT_VIBRATE;
-		notification.defaults |= Notification.DEFAULT_SOUND;
-		notification.defaults |= Notification.DEFAULT_LIGHTS;
+		//notification.defaults |= Notification.DEFAULT_SOUND;
+		//notification.defaults |= Notification.DEFAULT_LIGHTS;
 
 		NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		manager.notify(R.string.app_name, notification);
+		manager.notify(R.string.app_name, notification.build());
 		{
 			// Wake Android Device when notification received
 			PowerManager pm = (PowerManager) context

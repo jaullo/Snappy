@@ -32,10 +32,12 @@ import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -75,6 +77,7 @@ public class SettingsActivity extends SideBarActivity {
 		setContentView(R.layout.activity_settings);
 		setSideBar(getString(R.string.SETTINGS));
 		initialization();
+		//initializeLanguages();
 	}
 
 	private class SendPasswordListener implements ResultListener<Void> {
@@ -85,6 +88,21 @@ public class SettingsActivity extends SideBarActivity {
 		public void onResultsFail() {			
 		}
 	}
+	
+//	private void initializeLanguages()
+//	{
+//		Spinner spinner = (Spinner) findViewById(R.id.languages_spinner);
+//		// Create an ArrayAdapter using the string array and a default spinner layout
+//		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//		        R.array.langs_array, android.R.layout.simple_spinner_item);
+//		
+//		// Specify the layout to use when the list of choices appears
+//		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		
+//		// Apply the adapter to the spinner
+//		spinner.setAdapter(adapter);
+//		
+//	}
 	
 	private void initialization() {
 

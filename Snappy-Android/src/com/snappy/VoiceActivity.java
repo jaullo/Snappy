@@ -29,6 +29,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.json.JSONException;
 
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -49,10 +53,15 @@ import android.widget.Toast;
 import com.snappy.adapters.CommentsAdapter;
 import com.snappy.couchdb.CouchDB;
 import com.snappy.couchdb.ResultListener;
+import com.snappy.couchdb.SpikaException;
+import com.snappy.couchdb.SpikaForbiddenException;
 import com.snappy.couchdb.model.Comment;
 import com.snappy.couchdb.model.Message;
 import com.snappy.extendables.SpikaActivity;
+import com.snappy.lazy.ImageLoader;
 import com.snappy.management.CommentManagement;
+import com.snappy.management.UsersManagement;
+import com.snappy.messageshandling.FindAvatarFieldAsync;
 import com.snappy.messageshandling.GetCommentsAsync;
 import com.snappy.utils.LayoutHelper;
 import com.snappy.utils.Utils;
@@ -111,12 +120,36 @@ public class VoiceActivity extends SpikaActivity {
 
 		String idOfUser = mExtras.getString("idOfUser");
 		String nameOfUser = mExtras.getString("nameOfUser");
-
-		CouchDB.findAvatarIdAndDisplay(idOfUser, ivAvatar, this);
-
+		
+		//Log.i("Usuario Recuperado Audio",  avatarId);
+		
+		if (UsersManagement.getLoginUser().getId().equals(idOfUser))
+		{
+			Utils.displayImage(UsersManagement.getLoginUser().getAvatarFileId(), ivAvatar, ImageLoader.SMALL,
+					R.drawable.user_stub, false);
+		}
+		else
+			CouchDB.findAvatarIdAndDisplay(idOfUser, ivAvatar, this);
+		
+		///String avatarId = null;
+		//try {
+		//	avatarId = new FindAvatarFieldAsync(this).execute(idOfUser).get();	
+		//	} catch (InterruptedException e) {
+		//		e.printStackTrace();
+	//		} catch (ExecutionException e) {
+	//			e.printStackTrace();
+	//		}
+	
+	//	Log.i("Usuario Recuperado Audio",  avatarId);
+		
+		//Utils.displayImage(avatarId, ivAvatar, ImageLoader.SMALL, R.drawable.user_stub, false);
+		
 		if (mMessage.getBody().equals(null) || mMessage.getBody().equals("")) {
-			tvNameOfUser.setText(nameOfUser.toUpperCase(Locale.getDefault())
-					+ "'S VOICE");
+
+			tvNameOfUser.setText(getResources().getString(R.string.voice_activity_voice) + " " + Utils.capitalizeFirstLetter(nameOfUser));
+				
+			//tvNameOfUser.setText(nameOfUser.toUpperCase(Locale.getDefault())
+			//		+ "'S VOICE");
 		} else {
 			tvNameOfUser.setText(mMessage.getBody());
 		}

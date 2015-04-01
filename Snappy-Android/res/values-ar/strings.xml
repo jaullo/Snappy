@@ -254,4 +254,9 @@
     <string name="push_new_message_message_upper">وقد نرسل لك رسائل جديدة</string>
     <string name="push_new_message_message_group">رسالة مجموعة جديدة</string>
      <string name="push_new_message_message_group_upper">الرسائل المرسلة لمجموعة</string>
+     <string name="config_lang_select">Language: </string>
+     
+     <string name="recent_activity_string_message">رسالة جديدة من </string>
+     <string name="recent_activity_string_message_group">الرسائل المرسلة لمجموعة</string>
+     <string name="voice_activity_voice">صوت</string>
 </resources>

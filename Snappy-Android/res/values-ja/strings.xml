@@ -274,4 +274,9 @@
      <string name="push_new_message_message_upper">あなたに新しいメッセージを送信しています</string>
        <string name="push_new_message_message_group">グループメッセージ</string>
        <string name="push_new_message_message_group_upper">グループに投稿されたメッセージ</string>
+       <string name="config_lang_select">Language: </string>
+       
+       <string name="recent_activity_string_message">からの新しいメッセージ </string>
+       <string name="recent_activity_string_message_group">グループに投稿されたメッセージp</string>
+       <string name="voice_activity_voice">声</string>
 </resources>

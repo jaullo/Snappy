@@ -28,13 +28,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -54,7 +57,9 @@ import com.snappy.couchdb.CouchDB;
 import com.snappy.couchdb.ResultListener;
 import com.snappy.couchdb.model.Comment;
 import com.snappy.couchdb.model.Message;
+import com.snappy.dialog.HookUpProgressDialog;
 import com.snappy.extendables.SpikaActivity;
+import com.snappy.extendables.SpikaAsync;
 import com.snappy.lazy.ImageLoader;
 import com.snappy.management.CommentManagement;
 import com.snappy.management.UsersManagement;
@@ -98,6 +103,13 @@ public class VideoActivity extends SpikaActivity {
 
 	private ArrayList<Comment> mComments;
 
+	 public VideoActivity()
+	 {
+	        mIsPlaying = 0;
+	        mHandlerForProgressBar = new Handler();
+	        mDurationOfVideo = 0L;
+	 }
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -140,7 +152,7 @@ public class VideoActivity extends SpikaActivity {
 
 		String avatarId = null;
 		if (extras.getBoolean("videoFromUser")) {
-			CouchDB.findAvatarIdAndDisplay(idOfUser, ivAvatar, this);
+		//	CouchDB.findAvatarIdAndDisplay(idOfUser, ivAvatar, this);
 		} else {
 			avatarId = UsersManagement.getLoginUser().getAvatarFileId();
 			Utils.displayImage(avatarId, ivAvatar, ImageLoader.SMALL,
@@ -153,8 +165,12 @@ public class VideoActivity extends SpikaActivity {
 			tvNameOfUserVideo.setText(mMessage.getBody());
 		}
 
-		fileDownloadAsync(mMessage.getVideoFileId(), new File(getHookUpPath(), "video_download.mp4"));
-
+		 //fileDownloadAsync(mMessage.getVideoFileId(), new File(getHookUpPath(), "video_download.mp4"));
+		
+		new FileDownloadAsync(this).execute(mMessage.getVideoFileId());
+		
+		Log.i("Video Id", mMessage.getVideoFileId());
+		
 	}
 
 	private void scrollListViewToBottom() {
@@ -179,6 +195,7 @@ public class VideoActivity extends SpikaActivity {
 
 		LinearLayout relativeLayoutForVideo = (LinearLayout) mTop
 				.findViewById(R.id.videoWrapper);
+		
 		LayoutParams params = (LayoutParams) relativeLayoutForVideo
 				.getLayoutParams();
 		// android.widget.LinearLayout.LayoutParams params =
@@ -203,10 +220,12 @@ public class VideoActivity extends SpikaActivity {
 					// pause
 					mPlayPause.setImageResource(R.drawable.play_btn);
 					onPlay(1);
+					return;
 				} else {
 					// play
 					mPlayPause.setImageResource(R.drawable.pause_btn);
 					onPlay(0);
+					return;
 				}
 			}
 		});
@@ -276,11 +295,13 @@ public class VideoActivity extends SpikaActivity {
 	private void onPlay(int playPauseStop) {
 		if (playPauseStop == 0) {
 			startPlaying();
+			return;
 		} else if (playPauseStop == 1) {
 			pausePlaying();
+			return;
 		} else {
 			stopPlaying();
-
+			return;
 		}
 	}
 
@@ -304,12 +325,14 @@ public class VideoActivity extends SpikaActivity {
 
 						@Override
 						public void run() {
-							mPbForPlaying.setProgress((int) mVideoView
+						mPbForPlaying.setProgress((int) mVideoView
 									.getCurrentPosition());
+						
 							if (mDurationOfVideo - 99 > mVideoView
 									.getCurrentPosition()) {
 								mHandlerForProgressBar.postDelayed(
 										mRunnForProgressBar, 100);
+								return;
 							} else {
 								mPbForPlaying.setProgress((int) mVideoView
 										.getDuration());
@@ -322,6 +345,7 @@ public class VideoActivity extends SpikaActivity {
 										onPlay(2);
 									}
 								}, 120);
+								return;
 							}
 						}
 					};
@@ -334,6 +358,7 @@ public class VideoActivity extends SpikaActivity {
 			mVideoView.start();
 			mHandlerForProgressBar.post(mRunnForProgressBar);
 			mIsPlaying = VIDEO_IS_PLAYING;
+			return;
 		}
 	}
 
@@ -350,11 +375,87 @@ public class VideoActivity extends SpikaActivity {
 		mIsPlaying = VIDEO_IS_PAUSED;
 	}
 
+	
+
+	
+	private class FileDownloadAsync extends SpikaAsync<String, Void, Void> {
+
+		protected FileDownloadAsync(Context context) {
+			super(context);
+		}
+
+		private HookUpProgressDialog mProgressDialog;
+		boolean isLoaded = false;
+
+		@Override
+		protected void onPreExecute() {
+			if (mProgressDialog == null) {
+				mProgressDialog = new HookUpProgressDialog(VideoActivity.this);
+			}
+			mProgressDialog.show();
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(String... params) {
+			if(android.os.Debug.isDebuggerConnected())
+			    android.os.Debug.waitForDebugger();
+			
+			try {
+
+				File file = new File(getHookUpPath(), "video_download.mp4");
+				Log.i("File Video", file.getAbsolutePath());
+				Log.i("Hook Patch", getHookUpPath().getAbsolutePath());
+				
+				Log.i("File", params[0]);
+				CouchDB.downloadFile(params[0], file);
+
+				isLoaded = true;
+
+			} catch (Exception e) {
+				Log.e("LOG", e.toString());
+				isLoaded = false;
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			if(android.os.Debug.isDebuggerConnected())
+			    android.os.Debug.waitForDebugger();
+			
+			mProgressDialog.dismiss();
+			if (isLoaded) {
+				sFileName = getHookUpPath().getAbsolutePath()
+						+ "/video_download.mp4";
+			} else {
+				Toast.makeText(VideoActivity.this,
+						"Error in downloading video...", Toast.LENGTH_LONG)
+						.show();
+				mPlayPause.setClickable(false);
+				mStopVideo.setClickable(false);
+
+			}
+			super.onPostExecute(result);
+		}
+
+		private File getHookUpPath() {
+			File root = android.os.Environment.getExternalStorageDirectory();
+			File dir = new File(root.getAbsolutePath() + "/HookUp");
+			if (dir.exists() == false) {
+				dir.mkdirs();
+			}
+			return dir;
+		}
+
+	}
+	
 	private void fileDownloadAsync (String fileId, File file) {
 		CouchDB.downloadFileAsync(fileId, file, new FileDownloadFinish(), VideoActivity.this, true);
 	}
 	
 	private class FileDownloadFinish implements ResultListener<File> {
+		
 		@Override
 		public void onResultsSucceded(File result) {
 			sFileName = getHookUpPath().getAbsolutePath()
@@ -370,6 +471,7 @@ public class VideoActivity extends SpikaActivity {
 			mPlayPause.setClickable(false);
 			mStopVideo.setClickable(false);
 		}
+		
 	}
 
 	private File getHookUpPath() {

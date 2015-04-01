@@ -51,6 +51,8 @@ public class Preferences {
 	private static final String GROUP_PASSWORD = "GROUP_PASSWORD";
 	private static final String USER_SERVER_URL = "USER_SERVER_URL";
 	private static final String USER_SERVER_NAME = "USER_SERVER_NAME";
+	private static final String USER_PREFERRED_LANGUAGE = "USER_PREFERRED_LANGUAGE";
+	
 
 	private SharedPreferences sharedPreferences;
 
@@ -208,6 +210,16 @@ public class Preferences {
     
     public String getUserServerName () {
     	return sharedPreferences.getString(USER_SERVER_NAME, Const.DEFAULT_SERVER_NAME);
+    }
+    
+    public void setUserPreferredLanguage (String language) {
+    	SharedPreferences.Editor editor = sharedPreferences.edit();
+    	editor.putString(USER_PREFERRED_LANGUAGE, language);
+    	editor.commit();
+    }
+    
+    public String getUserPreferredLaguage () {
+    	return sharedPreferences.getString(USER_PREFERRED_LANGUAGE, "");
     }
     
 }

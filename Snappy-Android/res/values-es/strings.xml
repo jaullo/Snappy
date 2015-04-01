@@ -267,4 +267,9 @@
      <string name="push_new_message_message_upper">Te ha enviado nuevos mensajes</string>
       <string name="push_new_message_message_group">Nuevo mensaje de grupo</string>
        <string name="push_new_message_message_group_upper">envío mensajes al grupo</string>
+       
+       <string name="config_lang_select">Idioma: </string>
+       <string name="recent_activity_string_message">Nuevos mensajes de</string>
+       <string name="recent_activity_string_message_group">envío mensajes al grupo</string>
+       <string name="voice_activity_voice">Voz de</string>
 </resources>

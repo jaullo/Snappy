@@ -189,11 +189,43 @@ public class CameraCropActivity extends SpikaActivity implements
 
 					@Override
 					public void onClick(View v) {
-						Bitmap resizedBitmap = getBitmapFromView(mImageView);
+						final Bitmap resizedBitmap = getBitmapFromView(mImageView);
 						ByteArrayOutputStream bs = new ByteArrayOutputStream();
 						resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100,
 								bs);
 
+//						new AsyncTask<Void, Void, Boolean>() {
+//						
+//							@Override
+//							protected Boolean doInBackground(Void... params) {
+//								return saveBitmapToFile(resizedBitmap, mFilePath);
+//							}
+//							
+//							@Override
+//							protected void onPostExecute(Boolean result) {
+//								if (result == true) {
+//									if (mForProfile == true) {
+//										MyProfileActivity.gProfileImage = getBitmapFromView(mImageView);
+//										MyProfileActivity.gProfileImagePath = mFilePath;
+//										finish();
+//									}else if (mForGroup == true) {
+//										CreateGroupActivity.gGroupImage = getBitmapFromView(mImageView);
+//										CreateGroupActivity.gGroupImagePath = mFilePath;
+//										finish();
+//									}else if (mForGroupUpdate == true) {
+//										GroupProfileActivity.gGroupImage = getBitmapFromView(mImageView);
+//										GroupProfileActivity.gGroupImagePath = mFilePath;
+//										finish();
+//									}else {
+//										fileUploadAsync(mFilePath);
+//									}}else {
+//										Toast.makeText(CameraCropActivity.this,	"Failed to send photo", Toast.LENGTH_LONG).show();
+//									}
+//								}
+//							
+//						}.execute();
+						
+											
 						if (saveBitmapToFile(resizedBitmap, mFilePath) == true) {
 
 							if (mForProfile == true) {
@@ -210,7 +242,6 @@ public class CameraCropActivity extends SpikaActivity implements
 								finish();
 							} else {
 								fileUploadAsync(mFilePath);
-
 //								new FileUploadAsync(CameraCropActivity.this)
 //										.execute(mFilePath);
 								// new SendMessageAsync(getApplicationContext(),
@@ -218,7 +249,7 @@ public class CameraCropActivity extends SpikaActivity implements
 								// .execute(resizedBitmap);
 							}
 							
-						} else {
+					} else {
 							Toast.makeText(CameraCropActivity.this,
 									"Failed to send photo", Toast.LENGTH_LONG)
 									.show();
@@ -608,7 +639,7 @@ public class CameraCropActivity extends SpikaActivity implements
 		}
 	}
 
-	protected void onPhotoTaken(String path) {
+	protected void onPhotoTaken(final String path) {
 
 		String fileName = Uri.parse(path).getLastPathSegment();
 		mFilePath = CameraCropActivity.this.getExternalCacheDir() + "/" + fileName;
@@ -624,6 +655,10 @@ public class CameraCropActivity extends SpikaActivity implements
 			protected byte[] doInBackground(String... params) {
 				try {
 
+					if (!path.equals(mFilePath)) {
+						copy(new File(path), new File(mFilePath));
+					}
+					
 					if (params == null)
 						return null;
 

@@ -191,6 +191,7 @@ public class CouchDB {
         return file;
     }
     
+    
     /**
      * @param fileId
      * @param file
@@ -805,6 +806,33 @@ public class CouchDB {
 
 //**************** FIND AVATAR FILE ID **************************
 
+    /**
+     * @param username
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     * @throws JSONException
+     * @throws SpikaException
+     * @throws SpikaForbiddenException 
+     * @throws IllegalStateException 
+     */
+    public static String findAvatarFileIdStatic(String username) throws ClientProtocolException, IOException, JSONException, SpikaException, IllegalStateException, SpikaForbiddenException {
+    	
+    	try {
+    		username = URLEncoder.encode(username, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+
+        final String url = SpikaApp.getInstance().getBaseUrlWithSufix(Const.GET_AVATAR_FILE_ID) + username;
+
+        JSONObject jsonObject = ConnectionHandler.getJsonObject(url, null);
+        Log.i("Vamos a ver si esta trayendo JSON o no", jsonObject.toString());
+        //User user = CouchDBHelper.parseSingleUserObjectWithoutRowParam(jsonObject);
+        
+        return CouchDBHelper.findAvatarFileId(jsonObject);
+    }
+    
     public static String findAvatarFileId(String userId) throws ClientProtocolException, IOException, JSONException, SpikaException, IllegalStateException, SpikaForbiddenException {
 
         try {

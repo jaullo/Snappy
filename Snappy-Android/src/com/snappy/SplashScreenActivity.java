@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.crittercism.app.Crittercism;
 import com.snappy.couchdb.CouchDB;
+import com.snappy.couchdb.LocalDB;
 import com.snappy.couchdb.ResultListener;
 import com.snappy.couchdb.model.User;
 import com.snappy.extendables.SideBarActivity;
@@ -58,6 +59,8 @@ public class SplashScreenActivity extends Activity {
 	public static SplashScreenActivity sInstance = null;
 	private User mUser;
 	public static boolean isinFG = false;
+	private boolean isIntent = false;
+	
 	
 	public void onPause() {
 		super.onPause();
@@ -121,6 +124,13 @@ public class SplashScreenActivity extends Activity {
 				}
 			}, 2000);
 		}
+		
+//		isIntent = getIntent().getBooleanExtra(Const.PUSH_INTENT, false);
+//		if(isIntent)
+//		{
+			LocalDB db = new LocalDB(this);
+			db.deleteAllMessages();
+	//	}
 	}
 	
 	private boolean checkIfUserSignIn() {

@@ -190,7 +190,7 @@
     <string name="email_length">Email is required</string>
     <string name="max_contacts_alert">You have already added maximum number of contacts</string>
     <string name="max_favorites_alert">You have already added maximum number of favorite groups</string>
-    <string name ="email_ok">Email OK</string>
+    <string name="email_ok">Email OK</string>
     <string name="name_error">Name should contain more than 1 character in length</string>
     <string name="name_ok">Name OK</string>
     <string name="no_camera">No camera on device</string>
@@ -212,15 +212,11 @@
     <string name="OPEN_CONVERSATION">OPEN CONVERSATION</string>
     <string name="enter_group_password">Enter group password</string>
     <string name="MEMBER">MEMBERS</string>
-    
     <string name="tutorial_nocontact">You have no contacts yet! Add some friends to your contact so you can each them easy.</string>
     <string name="tutorial_nofavorite">You have no groups subscribed. Subscribe your favorite group and get notifications when someone post to wall.</string>
-    
     <string name="OPEN_WEB">Open Browser</string>
     <string name="USER_SUPPORT">User Support</string>
     <string name="logout_message">Do you want to logout?</string>
-
-
     <string name="tutorial_login">Thank you for downloading Spika. Enjoy chatting :)</string>
     <string name="tutorial_recent">Thank you for signing up! This screen shows all of your unread messages. It\'s empty at the moment but soon it will be full of messages from your friends :)</string>
     <string name="tutorial_wall">This is the place where you can talk to a friend or post in a group. You can also send photo, voice and video. Try sending something to us!</string>
@@ -229,14 +225,10 @@
     <string name="tutorial_group_add">You can secure your group with a password so only people you\'ve shared it with can access the wall. Also, your group is automatically added to the subscribers list. Be careful not to exceeed the limit!</string>
     <string name="tutorial_userprofile">You can add your friends to contacts, but be careful, number of contacts is limited to 200.</string>
     <string name="tutorial_groupprofile">You can subscribe to a group and you will get notified when someone posts to the wall in that group, but be careful, number of group subscriptions is limited to 60.</string>
-
-
     <string name="no_recent_activities">No recent activities</string>
     <string name="wrongpassword">Wrong Password</string>
-    
     <string name="YES">YES</string>
     <string name="NO">NO</string>
-
     <string name="delete_the_message">Delete the message</string>
     <string name="delete_information_title">This message is deleted</string>
     <string name="dont_delete">Don\'t delete</string>
@@ -246,7 +238,6 @@
     <string name="delete_after_a_week">After a week</string>
     <string name="delete_after_user_sees_it">When user sees it</string>
     <string name="delete_close">OK</string>
-    
     <string name="select_server">SELECET SERVER</string>
     <string name="add_server">Custom URL</string>
     <string name="video_capturebutton_stop">Stop</string>
@@ -259,23 +250,27 @@
     <string name="location_getlocation_failed">Getting address failed.</string>
     <string name="photoactivity_by"> by </string>
     <string name="recentactivity_nosender_id">Please set your GCM Sender ID</string>
-     <string name="recording_activity_recording_message">Recording...</string>
-     <string name="recording_activity_recordingdone_message">Recording Done</string>
-     <string name="settingsactivity_pass_on">Passcode protect on</string>
-     <string name="settingsactivity_pass_off">Passcode protect off</string>
-     <string name="settingsactivity_conf_saved">Saved</string>
-     <string name="settingsactivity_conf_error">Error</string>
-     <string name="videoactivity_download_error">Error in downloading video...</string>
-     <string name="voiceactivity_download_error">Error in downloading voice...</string>
-     <string name="comments_adapter_loadmore">Load more</string>
-     <string name="unknow_error">Unknown Snappy Error: </string>
-     <string name="deleteinformation_activity_set_text">Not Set</string>
-     <string name="hookup_password_success">Success</string>
-     
-     <string name="push_new_message_message">New message</string>
-     <string name="push_new_message_message_upper">Has send you new messages</string>
-     <string name="push_new_message_message_group">New group message</string>
-     <string name="push_new_message_message_group_upper">posted messages to group</string>
-     
+    <string name="recording_activity_recording_message">Recording...</string>
+    <string name="recording_activity_recordingdone_message">Recording Done</string>
+    <string name="settingsactivity_pass_on">Passcode protect on</string>
+    <string name="settingsactivity_pass_off">Passcode protect off</string>
+    <string name="settingsactivity_conf_saved">Saved</string>
+    <string name="settingsactivity_conf_error">Error</string>
+    <string name="videoactivity_download_error">Error in downloading video...</string>
+    <string name="voiceactivity_download_error">Error in downloading voice...</string>
+    <string name="comments_adapter_loadmore">Load more</string>
+    <string name="unknow_error">Unknown Snappy Error: </string>
+    <string name="deleteinformation_activity_set_text">Not Set</string>
+    <string name="hookup_password_success">Success</string>
+    <string name="push_new_message_message">New message</string>
+    <string name="push_new_message_message_upper">Has send you new messages</string>
+    <string name="push_new_message_message_group">New group message</string>
+    <string name="push_new_message_message_group_upper">posted messages to group</string>
+    <string name="config_lang_select">Language: </string>
+    <string name="title_activity_main">MainActivity</string>
     
+	<string name="recent_activity_string_message">New messages from</string>
+	<string name="recent_activity_string_message_group">Posted messages to group</string>
+	
+	<string name="voice_activity_voice">Voice of</string>
 </resources>

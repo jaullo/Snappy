@@ -303,5 +303,9 @@ public class Utils {
         
     }
     
-	
+	public static String capitalizeFirstLetter(String letter)
+	{
+		String cap = letter.substring(0,1).toUpperCase() + letter.substring(1);
+		return cap;
+	}
 }

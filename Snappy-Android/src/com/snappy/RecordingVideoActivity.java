@@ -212,8 +212,7 @@ public class RecordingVideoActivity extends SpikaActivity {
 					sFileName = video.getPath();
 
 					cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
-//					cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-//							uriSavedVideo);
+					cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,	uriSavedVideo);
 					startActivityForResult(cameraIntent, RESULT_FROM_CAMERA);
 				} catch (Exception ex) {
 					Toast.makeText(this, getString(R.string.no_camera),
